@@ -225,7 +225,19 @@ function create_config( )
     "all",
     "leave_ban",
     "admin",
-    "plugins"
+    "plugins",
+    "qr",
+    "map",
+    "info",
+    "feedback",
+    "welcome",
+    "Calculator",
+    "text",
+    "getplug",
+    "tosupport",
+    "nerkh",
+    "tagall",
+    "google"
     },
     sudo_users = {159359772,185532812,111488993,80182995,173979569,tonumber(our_id)},--Sudo users
     disabled_channels = {},
