@@ -99,7 +99,7 @@ if matches[1]:lower() == 'datak' then -- Put everything you like :)
   end 
   if matches[1]:lower() == "statslist" then
     if not is_momod(msg) then
-      return "شما نمیتوانید
+      return "شما نمیتوانید"
     end
     local chat_id = msg.to.id
     local name = user_print_name(msg.from)
@@ -109,7 +109,7 @@ if matches[1]:lower() == 'datak' then -- Put everything you like :)
   if matches[1]:lower() == "stats" then
     if not matches[2] then
       if not is_momod(msg) then
-        return "فقط مقام مد به بالا میتواند
+        return "فقط مقام مد به بالا میتواند"
       end
       if msg.to.type == 'chat' then
         local chat_id = msg.to.id
