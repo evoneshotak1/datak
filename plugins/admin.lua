@@ -1,3 +1,5 @@
+-- https://github.com/amirhmz/
+-- https://telegram.me/AmirDark/
 local function set_bot_photo(msg, success, result)
   local receiver = get_receiver(msg)
   if success then
@@ -6,7 +8,7 @@ local function set_bot_photo(msg, success, result)
     os.rename(result, file)
     print('File moved to:', file)
     set_profile_photo(file, ok_cb, false)
-    send_large_msg(receiver, 'Photo changed!', ok_cb, false)
+    send_large_msg(receiver, '✅ تصویر پروفایل تنظیم شد!', ok_cb, false)
     redis:del("bot:photo")
   else
     print('Error downloading: '..msg.id)
@@ -119,91 +121,84 @@ local function run(msg,matches)
       		end
       	end
     end
-    if matches[1] == "عکس جدید بات" then
+    if matches[1] == "setbotphoto" then
     	redis:set("bot:photo", "waiting")
-    	return 'عکس جدید را بفرست'
+    	return '🌠 تصویر ربات را ارسال کنید :'
     end
-    if matches[1] == "خواندن" then
-    	if matches[2] == "انلاین" then
+    if matches[1] == "markread" then
+    	if matches[2] == "on" then
     		redis:set("bot:markread", "on")
-    		return "خوانده میشود"
+    		return "دو تیک » فعال ✅"
     	end
-    	if matches[2] == "اف" then
+    	if matches[2] == "off" then
     		redis:del("bot:markread")
-    		return " خوانده نمیشود دیگر"
+    		return "دو تیک » غیر فعال ⛔️"
     	end
     	return
     end
-    if matches[1] == "اس ام اس" then
+    if matches[1] == "pm" then
     	send_large_msg("user#id"..matches[2],matches[3])
-    	return "پیام رفت"
+    	return "✅ پیام در پی وی ارسال شد."
     end
-    if matches[1] == "بلاک" then
-    	if is_sudo(matches[2]) then
-    		return "فقط سودو میتونه"
+    if matches[1] == "block" then
+    	if is_admin2(matches[2]) then
+    	return "⛔️ نمیتوانید ادمین را بلاک کنید"
     	end
-    	block_user("user#id"..matches[2],ok_cb,true)
-    	return "کاربر بلاک شد"
+    	block_user("user#id"..matches[2],ok_cb,false)
+    	return "⛔️ کاربر بلاک شد."
     end
-    if matches[1] == "انبلاک" then
-    	unblock_user("user#id"..matches[2],ok_cb,true)
-    	return "کاربر انبلاک شد"
+    if matches[1] == "unblock" then
+    	unblock_user("user#id"..matches[2],ok_cb,false)
+      return "⛔️ کاربر آنبلاک شد."
     end
-    if matches[1] == "برو" then--join by group link
+    if matches[1] == "import" then--join by group link
     	local hash = parsed_url(matches[2])
-    	import_chat_link(hash,ok_cb,true)
+    	import_chat_link(hash,ok_cb,false)
     end
-    if matches[1] == "لیست مخاطبین" then
+    if matches[1] == "contactlist" then
       get_contact_list(get_contact_list_callback, {target = msg.from.id})
-      return "I've sent contact list with both json and text format to your private"
+      return "✅ لیست مخاطبین در پی وی ارسال شد."
     end
-    if matches[1] == "ادد مخاطبین" and matches[2] then    add_contact(matches[2],matches[3],matches[4],ok_cb,false)
-      return "شماره "..matches[2].." به لیست مخاطبین اضافه شد"
+    if matches[1] == "delcontact" then
+      del_contact("user#id"..matches[2],ok_cb,false)
+      return "⛔️ کاربر "..matches[2].." از مخاطبین حذف شد."
     end
-    if matches[1] == "دیلیت" then
-      del_contact("user#id"..matches[2],ok_cb,true)
-      return "کاربر "..matches[2].." از لیست مخاطبین پاک شد"
-    end
-    if matches[1] == "دفترچه " then
+    if matches[1] == "dialoglist" then
       get_dialog_list(get_dialog_list_callback, {target = msg.from.id})
-      return "I've sent dialog list with both json and text format to your private"
+       return "✅ لیست محاوره ای در پی وی ارسال شد."
     end
-    if matches[1] == "این کیه" then
+    if matches[1] == "whois" then
       user_info("user#id"..matches[2],user_info_callback,{msg=msg})
-    end
-    if matches[1] == "sync_gbans" then
-    	if not is_sudo(msg) then-- Sudo only
-    		return
-    	end
-    	local url = "http://seedteam.org/Teleseed/Global_bans.json"
-    	local SEED_gbans = http.request(url)
-    	local jdat = json:decode(SEED_gbans)
-    	for k,v in pairs(jdat) do
-  		redis:hset('user:'..v, 'print_name', k)
-  		banall_user(v)
-      		print(k, v.." Globally banned")
-    	end
     end
     return
 end
 return {
   patterns = {
-	"^(اس ام اس) (%d+) (.*)$",
-	"^(برو) (.*)$",
-	"^(انبلاک) (%d+)$",
-	"^(بلاک) (%d+)$",
-	"^(انلاین) (خواندن)$",
-        "^(اف) (خواندن)$",
-	"^(عکس جدید بات)$",
+	"^[!/](pm) (%d+) (.*)$",
+	"^[!/](import) (.*)$",
+	"^[!/](unblock) (%d+)$",
+	"^[!/](block) (%d+)$",
+	"^[!/](markread) (on)$",
+	"^[!/](markread) (off)$",
+	"^[!/](setbotphoto)$",
+	"^[!/](contactlist)$",
+	"^[!/](dialoglist)$",
+	"^[!/](delcontact) (%d+)$",
+	"^[!/](whois) (%d+)$",
+	"^(pm) (%d+) (.*)$",
+	"^(import) (.*)$",
+	"^(unblock) (%d+)$",
+	"^(block) (%d+)$",
+	"^(markread) (on)$",
+	"^(markread) (off)$",
+	"^(setbotphoto)$",
+	"^(contactlist)$",
+	"^(dialoglist)$",
+	"^(delcontact) (%d+)$",
+	"^(whois) (%d+)$",
 	"%[(photo)%]",
-	"^(لیست مخاطبین)$",
-	"^(دفترچه)$",
-	"^(دیلیت) (%d+)$",
-        "^(ادد مخاطبین) (.*) (.*) (.*)$",
-	"^(این کیه) (%d+)$",
-	--"^/(sync_gbans)$"--sync your global bans with seed
   },
   run = run,
 }
---By @imandaneshi :)
---https://github.com/SEEDTEAM/TeleSeed/blob/master/plugins/admin.lua
+--Edit By @AmirDark :) Thanks to Iman Daneshi
+--https://github.com/amirhmz/Xamarin/blob/master/plugins/admin.lua
