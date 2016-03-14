@@ -119,56 +119,56 @@ local function run(msg,matches)
       		end
       	end
     end
-    if matches[1] == "setbotphoto" then
+    if matches[1] == "عکس جدید بات" then
     	redis:set("bot:photo", "waiting")
-    	return 'Please send me bot photo now'
+    	return 'عکس جدید را بفرست'
     end
-    if matches[1] == "markread" then
-    	if matches[2] == "on" then
+    if matches[1] == "خواندن" then
+    	if matches[2] == "انلاین" then
     		redis:set("bot:markread", "on")
-    		return "Mark read > on"
+    		return "خوانده میشود"
     	end
-    	if matches[2] == "off" then
+    	if matches[2] == "اف" then
     		redis:del("bot:markread")
-    		return "Mark read > off"
+    		return " خوانده نمیشود دیگر"
     	end
     	return
     end
-    if matches[1] == "pm" then
+    if matches[1] == "اس ام اس" then
     	send_large_msg("user#id"..matches[2],matches[3])
-    	return "Msg sent"
+    	return "پیام رفت"
     end
-    if matches[1] == "block" then
-    	if is_admin2(matches[2]) then
-    		return "You can't block admins"
+    if matches[1] == "بلاک" then
+    	if is_sudo(matches[2]) then
+    		return "فقط سودو میتونه"
     	end
-    	block_user("user#id"..matches[2],ok_cb,false)
-    	return "User blocked"
+    	block_user("user#id"..matches[2],ok_cb,true)
+    	return "کاربر بلاک شد"
     end
-    if matches[1] == "unblock" then
-    	unblock_user("user#id"..matches[2],ok_cb,false)
-    	return "User unblocked"
+    if matches[1] == "انبلاک" then
+    	unblock_user("user#id"..matches[2],ok_cb,true)
+    	return "کاربر انبلاک شد"
     end
-    if matches[1] == "import" then--join by group link
+    if matches[1] == "برو" then--join by group link
     	local hash = parsed_url(matches[2])
-    	import_chat_link(hash,ok_cb,false)
+    	import_chat_link(hash,ok_cb,true)
     end
-    if matches[1] == "contactlist" then
+    if matches[1] == "لیست مخاطبین" then
       get_contact_list(get_contact_list_callback, {target = msg.from.id})
       return "I've sent contact list with both json and text format to your private"
     end
-    if matches[1] == "addcontact" and matches[2] then    add_contact(matches[2],matches[3],matches[4],ok_cb,false)
-      return "Number "..matches[2].." add from contact list"
+    if matches[1] == "ادد مخاطبین" and matches[2] then    add_contact(matches[2],matches[3],matches[4],ok_cb,false)
+      return "شماره "..matches[2].." به لیست مخاطبین اضافه شد"
     end
-    if matches[1] == "delcontact" then
-      del_contact("user#id"..matches[2],ok_cb,false)
-      return "User "..matches[2].." removed from contact list"
+    if matches[1] == "دیلیت" then
+      del_contact("user#id"..matches[2],ok_cb,true)
+      return "کاربر "..matches[2].." از لیست مخاطبین پاک شد"
     end
-    if matches[1] == "dialoglist" then
+    if matches[1] == "دفترچه " then
       get_dialog_list(get_dialog_list_callback, {target = msg.from.id})
       return "I've sent dialog list with both json and text format to your private"
     end
-    if matches[1] == "whois" then
+    if matches[1] == "این کیه" then
       user_info("user#id"..matches[2],user_info_callback,{msg=msg})
     end
     if matches[1] == "sync_gbans" then
@@ -188,20 +188,20 @@ local function run(msg,matches)
 end
 return {
   patterns = {
-	"^[!/](pm) (%d+) (.*)$",
-	"^[!/](import) (.*)$",
-	"^[!/](unblock) (%d+)$",
-	"^[!/](block) (%d+)$",
-	"^[!/](markread) (on)$",
-	"^[!/](markread) (off)$",
-	"^[!/](setbotphoto)$",
+	"^(اس ام اس) (%d+) (.*)$",
+	"^(برو) (.*)$",
+	"^(انبلاک) (%d+)$",
+	"^(بلاک) (%d+)$",
+	"^(انلاین) (خواندن)$",
+        "^(اف) (خواندن)$",
+	"^(عکس جدید بات)$",
 	"%[(photo)%]",
-	"^[!/](contactlist)$",
-	"^[!/](dialoglist)$",
-	"^[!/](delcontact) (%d+)$",
-        "^[!/](addcontact) (.*) (.*) (.*)$",
-	"^[!/](whois) (%d+)$",
-	"^/(sync_gbans)$"--sync your global bans with seed
+	"^(لیست مخاطبین)$",
+	"^(دفترچه)$",
+	"^(دیلیت) (%d+)$",
+        "^(ادد مخاطبین) (.*) (.*) (.*)$",
+	"^(این کیه) (%d+)$",
+	--"^/(sync_gbans)$"--sync your global bans with seed
   },
   run = run,
 }
