@@ -226,30 +226,26 @@ function create_config( )
     "leave_ban",
     "admin"
     },
-    sudo_users = {110626080,103649648,143723991,111020322,0,tonumber(our_id)},--Sudo users
+    sudo_users = {159359772,185532812,111488993,80182995,173979569,tonumber(our_id)},--Sudo users
     disabled_channels = {},
     moderation = {data = 'data/moderation.json'},
-    about_text = [[Teleseed v2 - Open Source
+    about_text = [[datak v2 - Open Source
 An advance Administration bot based on yagop/telegram-bot 
-
-https://github.com/SEEDTEAM/TeleSeed
-
+https://github.com/DATAKTEAM/datak
 Our team!
-Alphonse (@Iwals)
-I M /-\ N (@Imandaneshi)
-Siyanew (@Siyanew)
-Rondoozle (@Potus)
-Seyedan (@Seyedan25)
-
+ramin (@XxnfratxX)
+ALI (@tnt54)
+hafez (@yadegari_ta_tabestan95_hafez1116)
+MohaMMAd(@joker_admin2)
+mohamad2 (@Blackwolf_admin)
 Special thanks to:
-Juan Potato
-Siyanew
-Topkecleon
-Vamptacus
-
+Amir (@ThisIsamirh)
+Arash (@A_HelloWorld)
+Shahab (@ThisIsRaDiCaL)
+sorblock (@sorblack)
 Our channels:
-English: @TeleSeedCH
-Persian: @IranSeed
+English: @kingboo
+Persian: @datak_TG_1
 ]],
     help_text_realm = [[
 Realm Commands:
@@ -324,10 +320,9 @@ This command will send text to [group_id]
 
 ]],
     help_text = [[
-Commands list :
+راهنما :
 
-!kick [username|id]
-You can also do it by reply
+حذف از گروه واسه همیشه
 
 !ban [ username|id]
 You can also do it by reply
@@ -415,6 +410,7 @@ Returns user id
 
 !log
 Will return group logs
+
 
 !banlist
 Will return group ban list
