@@ -8,11 +8,11 @@ local function set_bot_photo(msg, success, result)
     os.rename(result, file)
     print('File moved to:', file)
     set_profile_photo(file, ok_cb, false)
-    send_large_msg(receiver, '✅ تصویر پروفایل تنظیم شد!', ok_cb, false)
+    send_large_msg(receiver, '✅ تصویر پروفایل تنظیم شد!', ok_cb, true)
     redis:del("bot:photo")
   else
     print('Error downloading: '..msg.id)
-    send_large_msg(receiver, 'Failed, please try again!', ok_cb, false)
+    send_large_msg(receiver, 'Failed, please try again!', ok_cb, true)
   end
 end
 local function parsed_url(link)
@@ -31,12 +31,12 @@ local function get_contact_list_callback (cb_extra, success, result)
   file:write(text)
   file:flush()
   file:close()
-  send_document("user#id"..cb_extra.target,"contact_list.txt", ok_cb, false)--.txt format
+  send_document("user#id"..cb_extra.target,"contact_list.txt", ok_cb, true)--.txt format
   local file = io.open("contact_list.json", "w")
   file:write(json:encode_pretty(result))
   file:flush()
   file:close()
-  send_document("user#id"..cb_extra.target,"contact_list.json", ok_cb, false)--json format
+  send_document("user#id"..cb_extra.target,"contact_list.json", ok_cb, true)--json format
 end
 local function user_info_callback(cb_extra, success, result)
   result.access_hash = nil
