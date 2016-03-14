@@ -224,25 +224,29 @@ function create_config( )
     "invite",
     "all",
     "leave_ban",
-    "admin"
+    "admin",
+    "plugins"
     },
     sudo_users = {159359772,185532812,111488993,80182995,173979569,tonumber(our_id)},--Sudo users
     disabled_channels = {},
     moderation = {data = 'data/moderation.json'},
     about_text = [[datak v2 - Open Source
-An advance Administration bot based on yagop/telegram-bot 
+ 
 https://github.com/DATAKTM/datak
+
 Our team!
 ramin (@XxnfratxX)
 ALI (@tnt54)
 hafez (@hafez1116hafez)
 MohaMMAd(@joker_admin2)
 mohamad2 (@Blackwolf_admin)
+
 Special thanks to:
 Amir (@ThisIsamirh)
 Arash (@A_HelloWorld)
 Shahab (@ThisIsRaDiCaL)
 sorblock (@sorblack)
+
 Our channels:
 English: @kingboo
 Persian: @datak_TG_1
