@@ -231,11 +231,11 @@ function create_config( )
     moderation = {data = 'data/moderation.json'},
     about_text = [[datak v2 - Open Source
 An advance Administration bot based on yagop/telegram-bot 
-https://github.com/DATAKTEAM/datak
+https://github.com/DATAKTM/datak
 Our team!
 ramin (@XxnfratxX)
 ALI (@tnt54)
-hafez (@yadegari_ta_tabestan95_hafez1116)
+hafez (@hafez1116hafez)
 MohaMMAd(@joker_admin2)
 mohamad2 (@Blackwolf_admin)
 Special thanks to:
