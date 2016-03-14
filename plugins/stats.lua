@@ -85,21 +85,21 @@ local function bot_stats()
   local r = redis:eval(redis_scan, 1, hash)
   local text = 'Users: '..r
 
-  hash = 'chat:*:users'
+  hash = 'chat:*:کاربر'
   r = redis:eval(redis_scan, 1, hash)
-  text = text..'\nGroups: '..r
+  text = text..'\nگروه: '..r
   return text
 end
 local function run(msg, matches)
-  if matches[1]:lower() == 'teleseed' then -- Put everything you like :)
+if matches[1]:lower() == 'datak' then -- Put everything you like :)
     local about = _config.about_text
     local name = user_print_name(msg.from)
-    savelog(msg.to.id, name.." ["..msg.from.id.."] used /teleseed ")
+    savelog(msg.to.id, name.." ["..msg.from.id.."] used /datak ")
     return about
   end 
   if matches[1]:lower() == "statslist" then
     if not is_momod(msg) then
-      return "For mods only !"
+      return "شما نمیتوانید
     end
     local chat_id = msg.to.id
     local name = user_print_name(msg.from)
@@ -109,7 +109,7 @@ local function run(msg, matches)
   if matches[1]:lower() == "stats" then
     if not matches[2] then
       if not is_momod(msg) then
-        return "For mods only !"
+        return "فقط مقام مد به بالا میتواند
       end
       if msg.to.type == 'chat' then
         local chat_id = msg.to.id
@@ -120,16 +120,16 @@ local function run(msg, matches)
         return
       end
     end
-    if matches[2] == "teleseed" then -- Put everything you like :)
+    if matches[2] == "datak" then -- Put everything you like :)
       if not is_admin(msg) then
-        return "For admins only !"
+        return " شما نمیتوانید !"
       else
         return bot_stats()
       end
     end
     if matches[2] == "group" then
       if not is_admin(msg) then
-        return "For admins only !"
+        return " شما نمیتوانید !"
       else
         return chat_stats(matches[3])
       end
@@ -138,11 +138,11 @@ local function run(msg, matches)
 end
 return {
   patterns = {
-    "^[!/]([Ss]tats)$",
-    "^[!/]([Ss]tatslist)$",
-    "^[!/]([Ss]tats) (group) (%d+)",
-    "^[!/]([Ss]tats) (teleseed)",-- Put everything you like :)
-		"^[!/]([Tt]eleseed)"-- Put everything you like :)
+    "^([Ss]tats)$",
+    "^([Ss]tatslist)$",
+    "^([Ss]tats) (group) (%d+)",
+    "^([Ss]tats) (datak)",-- Put everything you like :)
+		"^([Dd]atak)"-- Put everything you like :)
     }, 
   run = run
 }
