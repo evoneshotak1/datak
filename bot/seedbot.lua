@@ -235,7 +235,7 @@ function create_config( )
 https://github.com/DATAKTM/datak
 
 Our team!
-ramin (@XxnfratxX)
+ramtin (@XxnfratxX)
 ALI (@tnt54)
 hafez (@hafez1116hafez)
 MohaMMAd(@joker_admin2)
