@@ -1,22 +1,22 @@
-— Implement a command !time [area] which uses
-— 2 Google APIs to get the desired result:
-—  1. Geocoding to get from area to a lat/long pair
-—  2. Timezone to get the local time in that lat/long location
+-- Implement a command !time [area] which uses
+-- 2 Google APIs to get the desired result:
+--  1. Geocoding to get from area to a lat/long pair
+--  2. Timezone to get the local time in that lat/long location
 
-— Globals
-— If you have a google api key for the geocoding/timezone api
+-- Globals
+-- If you have a google api key for the geocoding/timezone api
 api_key  = nil
 
 base_api = "https://maps.googleapis.com/maps/api"
 dateFormat = "%A %d %B - %H:%M:%S"
 
-— Need the utc time for the google api
+-- Need the utc time for the google api
 function utctime()
   return os.time(os.date("!*t"))
 end
 
-— Use the geocoding api to get the lattitude and longitude with accuracy specifier
-— CHECKME: this seems to work without a key??
+-- Use the geocoding api to get the lattitude and longitude with accuracy specifier
+-- CHECKME: this seems to work without a key??
 function get_latlong(area)
   local api      = base_api .. "/geocode/json?"
   local parameters = "address=".. (URL.escape(area) or "")
@@ -24,7 +24,7 @@ function get_latlong(area)
     parameters = parameters .. "&key="..api_key
   end
 
-  — Do the request
+  -- Do the request
   local res, code = https.request(api..parameters)
   if code ~=200 then return nil  end
   local data = json:decode(res)
@@ -33,7 +33,7 @@ function get_latlong(area)
     return nil
   end
   if (data.status == "OK") then
-    — Get the data
+    -- Get the data
     lat  = data.results[1].geometry.location.lat
     lng  = data.results[1].geometry.location.lng
     acc  = data.results[1].geometry.location_type
@@ -42,12 +42,12 @@ function get_latlong(area)
   end
 end
 
-— Use timezone api to get the time in the lat,
-— Note: this needs an API key
+-- Use timezone api to get the time in the lat,
+-- Note: this needs an API key
 function get_time(lat,lng)
   local api  = base_api .. "/timezone/json?"
 
-  — Get a timestamp (server time is relevant here)
+  -- Get a timestamp (server time is relevant here)
   local timestamp = utctime()
   local parameters = "location=" ..
     URL.escape(lat) .. "," ..
@@ -65,9 +65,9 @@ function get_time(lat,lng)
     return nil
   end
   if (data.status == "OK") then
-    — Construct what we want
-    — The local time in the location is:
-    — timestamp + rawOffset + dstOffset
+    -- Construct what we want
+    -- The local time in the location is:
+    -- timestamp + rawOffset + dstOffset
     local localTime = timestamp + data.rawOffset + data.dstOffset
     return localTime, data.timeZoneId
   end
@@ -76,16 +76,16 @@ end
 
 function getformattedLocalTime(area)
   if area == nil then
-    return "همچین شهری موجود نیست"
+    return "این شهر وجود ندارد"
   end
 
   lat,lng,acc = get_latlong(area)
   if lat == nil and lng == nil then
-    return 'In "'..tehran..'" they dont have time'
+    return 'It seems that in "'..area..'" they do not have a concept of time.'
   end
   local localTime, timeZoneId = get_time(lat,lng)
 
-  return "تهران: "..timeZoneId.."\nساعت: ".. os.date(dateFormat,localTime) 
+  return "زمان"..timeZoneId.." ساعت: ".. os.date(dateFormat,localTime) 
 end
 
 function run(msg, matches)
@@ -93,8 +93,8 @@ function run(msg, matches)
 end
 
 return {
-  description = "دریافت زمان", 
-  usage = "زمان (tehran) : زمان منطقه",
- patterns = {"^زمان (.*)$"}, 
+  description = "دریافت زمان منطقه", 
+  usage = "زمان [area]: زمان منطقه جغرافیایی",
+  patterns = {"^زمان (.*)$"}, 
   run = run
 }
