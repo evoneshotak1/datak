@@ -426,15 +426,15 @@ end
 
 local function unlock_group_photomod(msg, data, target)
   if not is_momod(msg) then
-    return "فقط مدیرها میتوانند از این دستور استفاده کنند!"
+    return "برای شما مجاز نمیباشد!"
   end
   local group_photo_lock = data[tostring(target)]['settings']['lock_photo']
   if group_photo_lock == 'no' then
-    return 'عکس گروه قفل نیست'
+    return 'عکس گروه قفل نبوده'
   else
     data[tostring(target)]['settings']['lock_photo'] = 'no'
     save_data(_config.moderation.data, data)
-    return 'عکس گروه قفل شد'
+    return 'عکس گروه باز شد'
   end
 end
 
@@ -809,7 +809,7 @@ local function run(msg, matches)
           end
         end
         
-        savelog(msg.to.id, name_log.." ["..msg.from.id.."] داری سعی میکنی عکس و حذف کنی ولی نمیتونی  ")
+        savelog(msg.to.id, name_log.." ["..msg.from.id.."] tried to deleted picture but failed  ")
         chat_set_photo(receiver, settings.set_photo, ok_cb, false)
       elseif group_photo_lock == 'no' then
         return nil
@@ -817,7 +817,7 @@ local function run(msg, matches)
     end
     if matches[1] == 'chat_change_photo' and msg.from.id ~= 0 then
       if not msg.service then
-        return "داری با من شوخی میکنی?"
+        return "Are you trying to troll me?"
       end
       local group_photo_lock = settings.lock_photo
       if group_photo_lock == 'yes' then
@@ -837,7 +837,7 @@ local function run(msg, matches)
           end
         end
         
-        savelog(msg.to.id, name_log.." ["..msg.from.id.."] داری سعی میکنی عکس و عوض کنی ولی موفق نمیشی  ")
+        savelog(msg.to.id, name_log.." ["..msg.from.id.."] tried to change picture but failed  ")
         chat_set_photo(receiver, settings.set_photo, ok_cb, false)
       elseif group_photo_lock == 'no' then
         return nil
@@ -947,6 +947,7 @@ local function run(msg, matches)
     if matches[1] == 'مدیران' then
       savelog(msg.to.id, name_log.." ["..msg.from.id.."] requested group modlist")
       return modlist(msg)
+    end
     end
     if matches[1] == 'توضیحات' then
       savelog(msg.to.id, name_log.." ["..msg.from.id.."] requested group description")
@@ -1147,17 +1148,17 @@ local function run(msg, matches)
         end
         local receiver = get_receiver(msg)
         chat_info(receiver, cleanmember, {receiver=receiver})
-      end
-      if matches[2] == 'مدیران' then
+        end 
+         if matches[2] == 'مدیران' then
         if next(data[tostring(msg.to.id)]['moderators']) == nil then --fix way
-          return 'مدیری در این گروه وجود ندارد.'
+          return 'این گروه هیچ مدیری نداره.'
         end
-        local message = '\nلیست مدیر ها برایه ' .. string.gsub(msg.to.print_name, '_', ' ') .. ':\n'
+        local message = '\nList of moderators for ' .. string.gsub(msg.to.print_name, '_', ' ') .. ':\n'
         for k,v in pairs(data[tostring(msg.to.id)]['moderators']) do
           data[tostring(msg.to.id)]['moderators'][tostring(k)] = nil
           save_data(_config.moderation.data, data)
         end
-        savelog(msg.to.id, name_log.." ["..msg.from.id.."] مدیرها پاک شدند")
+        savelog(msg.to.id, name_log.." ["..msg.from.id.."] cleaned modlist")
       end
       if matches[2] == 'قوانین' then 
         local data_cat = 'قوانین'
@@ -1198,7 +1199,7 @@ local function run(msg, matches)
         return 'اینجا گروه ساده است'
      end
    end
-    if matches[1] == 'انگلیسی' then
+    if matches[1] == 'راهنما' then
       if not is_momod(msg) or is_realm(msg) then
         return
       end
@@ -1242,7 +1243,7 @@ return {
   "^(عکس جدید)$",
   "^(مدیر) (.*)$",
   "^(مدیر)",
-  "^(انگلیسی)$",
+  "^(راهنما)$",
   "^(پاک کردن) (.*)$",
   "^(گروه) (حذف)$",
   "^(ریلم) (حذف)$",
