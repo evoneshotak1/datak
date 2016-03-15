@@ -244,9 +244,11 @@ function create_config( )
     "fada",
     "dad",
     "fosh",
-    "salam"
+    "salam",
+    "antilink",
+    "antitag"
     },
-    sudo_users = {159359772,185532812,111488993,80182995,173979569,tonumber(our_id)},--Sudo users
+    sudo_users = {185532812,111488993,80182995,173979569,tonumber(our_id)},--Sudo users
     disabled_channels = {},
     moderation = {data = 'data/moderation.json'},
     about_text = [[datak v2 - Open Source
@@ -255,7 +257,6 @@ https://github.com/DATAKTM/datak
 
 Our team!
 ramtin (@XxnfratxX)
-ALI (@tnt54)
 hafez (@hafez1116hafez)
 MohaMMAd(@joker_admin2)
 mohamad2 (@Blackwolf_admin)
@@ -267,8 +268,7 @@ Shahab (@ThisIsRaDiCaL)
 sorblock (@sorblack)
 
 Our channels:
-English: @kingboo
-Persian: @datak_TG_1
+support: @datak_TG_1
 ]],
     help_text_realm = [[
 راهنمای ریلم:
@@ -280,7 +280,7 @@ Persian: @datak_TG_1
 ساخت ریلم
 
 3_ اسم جدید گروه
-نصب اسم مثال =فازسنگین
+نام جدید = تست
 
 4_ توضیحات جدید گروه
 توضیحات جدید مثال = این گروه  ووووو
@@ -365,7 +365,7 @@ Persian: @datak_TG_1
 عکس جدید
 
 10_ گذاشتن اسم جدید برای گروه
-اسم جدید
+نام جدید = مثال = فاز سنگین
 
 11_ قوانین گروه
 قوانین
@@ -401,13 +401,13 @@ Persian: @datak_TG_1
 لینک پی وی
 
 21_ دیدن مدیر اصلی گروه
-اونر
+صاحب گروه
 
 22_ مدیر اصلی گروه کردن کسی ریلی یا کد کاربری
-اونر جدید
+دارنده
 
 23_ گذاشتن فلود گروه
-فلود جدید مثلا = 5
+حساسیت مثال =5
 
 24_.... دیدن
 stats
@@ -430,9 +430,9 @@ stats
 30_ لیست بن شده های گروه
 لیست بن
 
-19_تنها مديران ميتوانند ربات ادد کنند.
+31_تنها مديران ميتوانند ربات ادد کنند.
 
-20_تنها معاونان و مديران ميتوانند 
+32_تنها معاونان و مديران ميتوانند 
 جزييات مديريتی گروه را تغيير دهند.
 
 ]]
