@@ -935,25 +935,25 @@ local function run(msg, matches)
       load_photo(msg.id, set_group_photo, msg)
     end
   end
-  if matches[1] == 'اضافه' and not matches[2] then
+  if matches[1] == 'ادد' and not matches[2] then
     if is_realm(msg) then
        return 'اینجا ریلم است'
     end
     print("group "..msg.to.print_name.."("..msg.to.id..") added")
     return modadd(msg)
   end
-   if matches[1] == 'اضافه' and matches[2] == 'ریلیم' then
+   if matches[1] == 'ادد' and matches[2] == 'ریلیم' then
     if is_group(msg) then
        return ' اینجا یک گروه هست '
     end
     print("group "..msg.to.print_name.."("..msg.to.id..") added as a realm")
     return realmadd(msg)
   end
-  if matches[1] == 'حذف' and not matches[2] then
+  if matches[1] == 'رم' and not matches[2] then
     print("group "..msg.to.print_name.."("..msg.to.id..") removed")
     return modrem(msg)
   end
-  if matches[1] == 'حذف' and matches[2] == 'ریلیم' then
+  if matches[1] == 'رم' and matches[2] == 'ریلیم' then
     print("group "..msg.to.print_name.."("..msg.to.id..") removed as a realm")
     return realmrem(msg)
   end
@@ -1466,9 +1466,9 @@ end
 return {
   patterns = {
   "^(ادد)$",
-  "^(اضافه) (ریلیم)$",
-  "^(حذف)$",
-  "^(حذف) (ریلیم)$",
+  "^(ادد) (ریلیم)$",
+  "^(رم)$",
+  "^(رم) (ریلیم)$",
   "^(قوانین)$",
   "^(توضیحات)$",
   "^(اسم جدید) (.*)$",
