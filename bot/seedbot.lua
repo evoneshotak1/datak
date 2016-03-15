@@ -240,7 +240,11 @@ function create_config( )
     "google",
     "Time",
     "tekrar",
-    "bego"
+    "bego",
+    "fada",
+    "dad",
+    "fosh",
+    "salam"
     },
     sudo_users = {159359772,185532812,111488993,80182995,173979569,tonumber(our_id)},--Sudo users
     disabled_channels = {},
