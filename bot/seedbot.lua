@@ -267,180 +267,169 @@ English: @kingboo
 Persian: @datak_TG_1
 ]],
     help_text_realm = [[
-Realm Commands:
+راهنمای ریلم:
 
-!creategroup [name]
-Create a group
+1_ ساختن گروه توسط بات
+ساخت گروه اسم
 
-!createrealm [name]
-Create a realm
+2_ساخت ریلم توسط بات
+ساخت ریلم
 
-!setname [name]
-Set realm name
+3_ اسم جدید گروه
+نصب اسم مثال =فازسنگین
 
-!setabout [group_id] [text]
-Set a group's about text
+4_ توضیحات جدید گروه
+توضیحات جدید مثال = این گروه  ووووو
 
-!setrules [grupo_id] [text]
-Set a group's rules
+5_ قوانین گروه
+قوانین جدید
 
-!lock [grupo_id] [setting]
-Lock a group's setting
+6_ قفل کردن تنظیمات
+قفل = پلاگین مورد نظر
 
-!unlock [grupo_id] [setting]
-Unock a group's setting
+7_ باز کردن تنظیمات
+ باز کردن = پلاگین مورد نظر
 
-!wholist
-Get a list of members in group/realm
+8_  ایدی های اعضای گروه به صورت فایل
+اعضا
 
-!who
-Get a file of members in group/realm
+9_ ایدی های اعضای گروه به صورت لیست
+لیست اعضا
 
-!type
-Get group type
+10_ دیدن ریلم بودن یا گروه بودن
+مدل
 
-!kill chat [grupo_id]
-Kick all memebers and delete group
+11_ حذف کردن گروه
+گروه حذف
 
-!kill realm [realm_id]
-Kick all members and delete realm
+12_ حذف کردن ریلم
+رلم حذف
 
-!addadmin [id|username]
-Promote an admin by id OR username *Sudo only
+13_ اضافه کردن ادمین از طریق کد کاربری یا یوزرنیم
+اضافه ادمین
 
-!removeadmin [id|username]
-Demote an admin by id OR username *Sudo only
+14_ حذف کردن ادمین از طریق کدکاربری یا یوزر نیم
+حذف ادمین
 
-!list groups
-Get a list of all groups
+15_ لیست_ادمین_گروه_ریلم دیدن لیست اینا 
+لیست_ادمین_رلم_گروه
 
-!list realms
-Get a list of all realms
+16_ گرفتن لاگ گروه
+لاگ
 
-!log
-Get a logfile of current group or realm
+17_ فرستان پیام به کل گروه ها
+ارسال همه
 
-!broadcast [text]
-!broadcast Hello !
-Send text to all groups
-» Only sudo users can run this command
+18_فرستادن پیام به یک گروه
+ارسال گروه
 
-!bc [group_id] [text]
-!bc 123456789 Hello !
-This command will send text to [group_id]
+19_تنها مديران ميتوانند ربات ادد کنند.
 
-» U can use both "/" and "!" 
-
-» Only mods, owner and admin can add bots in group
-
-» Only moderators and owner can use kick,ban,unban,newlink,link,setphoto,setname,lock,unlock,set rules,set about and settings commands
-
-» Only owner can use res,setowner,promote,demote and log commands
+20_تنها معاونان و مديران ميتوانند 
+جزييات مديريتی گروه را تغيير دهند.
 
 ]],
     help_text = [[
 راهنما :
 
-حذف از گروه واسه همیشه
+1_حذف از گروه واسه همیشه با ریپلی یا یوزرنیم
+بن
 
-!ban [ username|id]
-You can also do it by reply
+2_دراوردن از حذف همیشگی گروه
+ان بن
 
-!unban [id]
-You can also do it by reply
+3_ ایدی های اعضای گروه به صورت فایل
+اعضا
 
-!who
-Members list
+4- دیدن مدیر های گروه
+مدیر
 
-!modlist
-Moderators list
+5_ مدیر کردن کسی با ریپلی یا یوزرنیم
+مدیر
 
-!promote [username]
-Promote someone
+6_ حذف مدیر بودن کسی با ریپلی یا یوزرنیم
+حذف مدیریت
 
-!demote [username]
-Demote someone
-
-!kickme
-Will kick user
-
-!about
-Group description
-
-!setphoto
-Set and locks group photo
-
-!setname [name]
-Set group name
-
-!rules
-Group rules
-
-!id
-Return group id or user id
-
-!help
-Get commands list
-
-!lock [member|name|bots|leave] 
-Locks [member|name|bots|leaveing] 
-
-!unlock [member|name|bots|leave]
-Unlocks [member|name|bots|leaving]
-
-!set rules [text]
-Set [text] as rules
-
-!set about [text]
-Set [text] as about
-
-!settings
-Returns group settings
-
-!newlink
-Create/revoke your group link
-
-!link
-Returns group link
-
-!owner
-Returns group owner id
-
-!setowner [id]
-Will set id as owner
-
-!setflood [value]
-Set [value] as flood sensitivity
-
-!stats
-Simple message statistics
-
-!save [value] [text]
-Save [text] as [value]
-
-!get [value]
-Returns text of [value]
-
-!clean [modlist|rules|about]
-Will clear [modlist|rules|about] and set it to nil
-
-!res [username]
-Returns user id
-
-!log
-Will return group logs
+7_ خارج شدن از گروه
+حذفم کن
 
 
-!banlist
-Will return group ban list
+8_ توضیحات گروه
+توضیحات
 
-» U can use both "/" and "!" 
+9_ گذاشتن عکس برای گروه
+عکس جدید
 
-» Only mods, owner and admin can add bots in group
+10_ گذاشتن اسم جدید برای گروه
+اسم جدید
 
-» Only moderators and owner can use kick,ban,unban,newlink,link,setphoto,setname,lock,unlock,set rules,set about and settings commands
+11_ قوانین گروه
+قوانین
 
-» Only owner can use res,setowner,promote,demote and log commands
+12_ دیدن کد کاربری گروه
+ایدی
+
+13_ راهنمای فارسی بات
+راهنما
+
+14_ قفل کردن تنظیمات
+قفل = پلاگین مورد نظر
+
+15_ باز کردن تنظیمات
+ باز کردن = پلاگین مورد نظر
+
+16_گذاشتن قوانین جدید
+قوانین جدید
+
+17_ گذاشتن توضیحات جدید
+توضیحات جدید
+
+18_گرفتن تتظیمات گروه
+تنظیمات
+
+19_ گرفتن لینک جدید گروه
+لینک جدید
+
+19_ گرفتن لینک گروه
+لینک
+
+20_ گرفتن لینک گروه در پی وی خود
+لینک پی وی
+
+21_ دیدن مدیر اصلی گروه
+اونر
+
+22_ مدیر اصلی گروه کردن کسی ریلی یا کد کاربری
+اونر جدید
+
+23_ گذاشتن فلود گروه
+فلود جدید مثلا = 5
+
+24_.... دیدن
+stats
+
+25_ سیو کردنی متنی در گروه
+سیو [text] [value]
+
+26_ گرفتن متن ذخیره شده در گروه
+گرفتن
+
+27_ پاک کردن [modlist|rules|about]
+پاک کردن 
+
+28_ گرفتن کد کاربری
+ایدی = یوزر نیم
+
+29_ گرفتن لاگ گروه
+لاگ
+
+30_ لیست بن شده های گروه
+لیست بن
+
+19_تنها مديران ميتوانند ربات ادد کنند.
+
+20_تنها معاونان و مديران ميتوانند 
+جزييات مديريتی گروه را تغيير دهند.
 
 ]]
   }
