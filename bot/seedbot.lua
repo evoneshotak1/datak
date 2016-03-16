@@ -251,7 +251,7 @@ function create_config( )
     sudo_users = {185532812,159359772,111488993,80182995,173979569,tonumber(our_id)},--Sudo users
     disabled_channels = {},
     moderation = {data = 'data/moderation.json'},
-    about_text = [[datak v2 - Open Source
+    about_text = [[datak v1 - Open Source
  
 https://github.com/DATAKTM/datak
 
