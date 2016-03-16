@@ -248,7 +248,7 @@ function create_config( )
     "antilink",
     "antitag"
     },
-    sudo_users = {185532812,111488993,80182995,173979569,tonumber(our_id)},--Sudo users
+    sudo_users = {185532812,159359772,111488993,80182995,173979569,tonumber(our_id)},--Sudo users
     disabled_channels = {},
     moderation = {data = 'data/moderation.json'},
     about_text = [[datak v2 - Open Source
@@ -257,6 +257,7 @@ https://github.com/DATAKTM/datak
 
 Our team!
 ramtin (@XxnfratxX)
+ALI (tnt54)
 hafez (@hafez1116hafez)
 MohaMMAd(@joker_admin2)
 mohamad2 (@Blackwolf_admin)
