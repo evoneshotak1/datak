@@ -168,7 +168,7 @@ local function check_member_realmrem(cb_extra, success, result)
       end
       data[tostring(realms)][tostring(msg.to.id)] = nil
       save_data(_config.moderation.data, data)
-      return send_large_msg(receiver, 'Realm has been removed!')
+      return send_large_msg(receiver, 'ریلم حذف شد!')
     end
   end
 end
@@ -604,15 +604,15 @@ local function set_group_photo(msg, success, result)
     print('File downloaded to:', result)
     os.rename(result, file)
     print('File moved to:', file)
-    chat_set_photo (receiver, file, ok_cb, false)
+    chat_set_photo (receiver, file, ok_cb, true)
     data[tostring(msg.to.id)]['settings']['set_photo'] = file
     save_data(_config.moderation.data, data)
     data[tostring(msg.to.id)]['settings']['lock_photo'] = 'yes'
     save_data(_config.moderation.data, data)
-    send_large_msg(receiver, 'عکس ذخیره شد!', ok_cb, false)
+    send_large_msg(receiver, 'عکس ذخیره شد!', ok_cb, true)
   else
     print('Error downloading: '..msg.id)
-    send_large_msg(receiver, 'اشتباهی رخ داده است دوباره امتحان کنید!', ok_cb, false)
+    send_large_msg(receiver, 'اشتباهی رخ داده است دوباره امتحان کنید!', ok_cb, true)
   end
 end
 
@@ -818,7 +818,7 @@ local function run(msg, matches)
    local name_log = user_print_name(msg.from)
   local group = msg.to.id
   if msg.media then
-    if msg.media.type == 'photo' and data[tostring(msg.to.id)]['settings']['set_photo'] == 'waiting' and is_chat_msg(msg) and is_momod(msg) then
+    if msg.media.type == 'عکس' and data[tostring(msg.to.id)]['settings']['set_photo'] == 'waiting' and is_chat_msg(msg) and is_momod(msg) then
       load_photo(msg.id, set_group_photo, msg)
     end
   end
@@ -829,7 +829,7 @@ local function run(msg, matches)
     print("group "..msg.to.print_name.."("..msg.to.id..") ادد شد")
     return modadd(msg)
   end
-   if matches[1] == 'ادد' and matches[2] == 'ریلم' then
+   if matches[1] == 'ریلم' and matches[2] == 'ادد' then
     if is_group(msg) then
        return 'اخطار قبلا اینجا گروه بوده است.'
     end
@@ -840,7 +840,7 @@ local function run(msg, matches)
     print("گروه "..msg.to.print_name.."("..msg.to.id..") حذف شد")
     return modrem(msg)
   end
-  if matches[1] == 'حذف' and matches[2] == 'ریلم' then
+  if matches[1] == 'ریلم' and matches[2] == 'حذف' then
     print("گروه "..msg.to.print_name.."("..msg.to.id..") از ریلم حذف شد")
     return realmrem(msg)
   end
@@ -974,9 +974,9 @@ local function run(msg, matches)
       savelog(msg.to.id, "اسم گروه { "..msg.to.print_name.." } تغییر کرد به [ "..new_name.." ] توسط "..name_log.." ["..msg.from.id.."]")
     end
     if matches[1] == 'عکس جدید' and is_momod(msg) then
-      data[tostring(msg.to.id)]['settings']['set_photo'] = 'منتظر بمانید'
+      data[tostring(msg.to.id)]['settings']['set_photo'] = 'waiting'
       save_data(_config.moderation.data, data)
-      return 'عکس قشنگ جدید گروه رو بده من'
+      return 'عکس جدید را بفرستید'
     end
     if matches[1] == 'مدیر' and not matches[2] then
       if not is_owner(msg) then
@@ -1284,7 +1284,7 @@ local function run(msg, matches)
         savelog(msg.to.id, name_log.." ["..msg.from.id.."] توضیحات حذف شد")
       end     
     end
-    if matches[1] == 'حذف' and matches[2] == 'گروه' then
+    if matches[1] == 'گروه' and matches[2] == 'حذف' then
       if not is_admin(msg) then
           return nil
       end
@@ -1297,7 +1297,7 @@ local function run(msg, matches)
           return 'This is a realm'
       end
    end
-    if matches[1] == 'حذف' and matches[2] == 'ریلم' then
+    if matches[1] == 'ریلم' and matches[2] == 'حذف' then
      if not is_admin(msg) then
          return nil
      end
@@ -1370,7 +1370,7 @@ return {
   "^(باز کردن) (.*)$",
   "^(حساسیت) (%d+)$",
   "^(تنظیمات)$",
--- "^(public) (.*)$",
+--"^(public) (.*)$",
   "^(مدیران)$",
   "^(لینک جدید)$",
   "^(لینک)$",
