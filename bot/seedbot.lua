@@ -264,7 +264,7 @@ Our team!
 ramtin (@XxnfratxX)
 ALI (tnt54)
 hafez (@hafez1116hafez)
-MohaMMAd(@joker_admin2)
+MohaMMAd(@joker_admin_2)
 mohamad2 (@Blackwolf_admin)
 
 Special thanks to:
