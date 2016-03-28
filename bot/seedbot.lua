@@ -246,7 +246,12 @@ function create_config( )
     "fosh",
     "salam",
     "antilink",
-    "antitag"
+    "antitag",
+    "zaman",
+    "invsudo",
+    "clash",
+    "aparat",
+    "azan"
     },
     sudo_users = {185532812,159359772,111488993,80182995,173979569,tonumber(our_id)},--Sudo users
     disabled_channels = {},
