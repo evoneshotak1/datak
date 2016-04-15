@@ -14,7 +14,7 @@ end
 
 return {
   description = "Shows bot info", 
-  usage = "!version: Shows bot info",
+  usage = "داتک: Shows bot info",
   patterns = {
     "^داتک$"
   }, 
