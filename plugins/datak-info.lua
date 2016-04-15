@@ -1,6 +1,4 @@
-do
-
-function run(msg, matches)
+local function run(msg, matches)
   return [[*datak*
   
   *open sourced*
@@ -14,11 +12,10 @@ end
 
 return {
   description = "Shows bot info", 
-  usage = "داتک: Shows bot info",
+  usage = "info: Shows bot info",
   patterns = {
-    "^داتک$"
+    "^داتک$",
   }, 
   run = run 
 }
-
 end
